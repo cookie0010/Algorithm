@@ -1,4 +1,4 @@
-package Class02;
+package Baekjoon.Class02;
 
 import java.io.IOException;
 import java.util.Scanner;
