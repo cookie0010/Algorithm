@@ -1,2 +1,4 @@
-package Baekjoon.Class02;public class PrinterQueue {
+package Baekjoon.Class02;
+
+public class PrinterQueue {
 }
