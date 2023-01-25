@@ -11,32 +11,28 @@ public class Statistics {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
+        int[] max = new int[8001];
+        int maxCnt = 0;
+        LinkedList<Integer> maxArr = new LinkedList<Integer>();
 
         // arr 배열에 값 입력
         for(int i=0;i<N;i++){
             arr[i] = Integer.parseInt(br.readLine());
         }
 
-        // 산술평균
-        int sum = Arrays.stream(arr).sum();
-        System.out.println(Math.round((double)sum/N));
-
-        // 중앙값
+        // 정렬
         Arrays.sort(arr);
-        System.out.println(arr[N/2]);
-
-        //최빈값
-        int[] max = new int[8001];
-        int maxCnt = 0;
-        LinkedList<Integer> maxArr = new LinkedList<Integer>();
+        double sum = Arrays.stream(arr).sum();
 
         for(int a:arr){
             max[a+4000]++;
         }
-        for(int i=0;i<8001;i++){
+        
+        // 최대count 구하기
+        for(int i=0;i<8001;i++)
             if(max[i]>maxCnt)
                 maxCnt = max[i];
-        }
+        
         for(int i=0;i<8001;i++){
             if(max[i]==maxCnt)
                 maxArr.offer(i-4000);
@@ -47,6 +43,15 @@ public class Statistics {
             maxArr.removeFirst();
             System.out.println(maxArr.getFirst());
         }
+
+        // 산술평균
+        System.out.println(Math.round(sum/N));
+
+        // 중앙값
+        System.out.println(arr[N/2]);
+
+        // 최빈값
+
 
         // 범위
         System.out.println(arr[N-1]-arr[0]);
